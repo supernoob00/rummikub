@@ -80,7 +80,12 @@ public class TileSet {
     }
 
     public TileSet removeTiles(int startIndex) {
-        TileSet removedTiles = removeTiles(startIndex, tiles.size());
+        TileSet removedTiles = removeTiles(startIndex, getQuantity());
+        return removedTiles;
+    }
+
+    public TileSet removeNumOfTiles(int count) {
+        TileSet removedTiles = removeTiles(getQuantity() - count);
         return removedTiles;
     }
 
@@ -121,5 +126,14 @@ public class TileSet {
             tileSetString = tileSetString + " " + tile.toString();
         }
         return tileSetString;
+    }
+
+    public boolean equals(TileSet anotherTileSet) {
+        for (int i = 0; i < getQuantity(); i++) {
+            if (getTile(i) != anotherTileSet.getTile(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

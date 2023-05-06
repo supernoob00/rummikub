@@ -1,6 +1,7 @@
 import java.util.List;
 
 public class Game {
+    public static int START_DEAL_COUNT = 14;
 
     private TileSet tileBag;
     private List<Player> players;
@@ -35,9 +36,15 @@ public class Game {
     
     public void run() {
         System.out.println(getTileBag());
+        dealStartingTiles();
+        System.out.println(getTileBag());
+
     }
 
     private void dealStartingTiles() {
-
+        for (Player player : getPlayers()) {
+            TileSet tilesToDeal = getTileBag().removeNumOfTiles(START_DEAL_COUNT);
+            player.getTileCollection().addTileSet(tilesToDeal);
+        }
     }
 }

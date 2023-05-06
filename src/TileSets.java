@@ -22,35 +22,24 @@ public final class TileSets {
 
     // move multiple tiles from specified index at source to end of dest
     public static void moveTiles(
-        TileSet sourceTileArray, 
-        TileSet destTileArray, 
+        TileSet source, 
+        TileSet dest, 
         int sourceStartIndex,
         int sourceEndIndex) 
     {
-        TileSet tilesToMove = sourceTileArray.removeTiles(sourceStartIndex, sourceEndIndex);
-        destTileArray.addTiles(tilesToMove);
+        TileSet tilesToMove = source.removeTiles(sourceStartIndex, sourceEndIndex);
+        dest.addTiles(tilesToMove);
     }
 
     // move multiple tiles from specified index at source to end of dest at specfied index
     public static void moveTiles(
-        TileSet sourceTileArray, 
-        TileSet destTileArray, 
+        TileSet source, 
+        TileSet dest, 
         int sourceStartIndex,
         int sourceEndIndex,
         int destIndex) 
     {
-        TileSet tilesToMove = sourceTileArray.removeTiles(sourceStartIndex, sourceEndIndex);
-        destTileArray.insertTiles(tilesToMove, destIndex);
-    }
-
-    /* 
-    A valid tile set is either:
-    Group: Same value with unique colors. Has a max size of four, which is the number of colors.
-    Run: Same color with sequential values which increment by one. Any joker used within must represent a valid value 1-13.
-    */
-
-    public static boolean isValid(TileSet tiles) {
-        boolean isValid = Group.isGroup(tiles) || Run.isRun(tiles);
-        return isValid;
+        TileSet tilesToMove = source.removeTiles(sourceStartIndex, sourceEndIndex);
+        dest.insertTiles(tilesToMove, destIndex);
     }
 }

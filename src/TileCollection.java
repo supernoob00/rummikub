@@ -8,11 +8,15 @@ public class TileCollection {
 
     }
 
-    public TileSet getTileArray(int i) {
+    public List<TileSet> getTileSets() {
+        return this.tileArrays;
+    }
+
+    public TileSet getTileSet(int i) {
         return tileArrays.get(i);
     }
 
-    public void addTileArray(TileSet tiles) {
+    public void addTileSet(TileSet tiles) {
         tileArrays.add(tiles);
     }
 
