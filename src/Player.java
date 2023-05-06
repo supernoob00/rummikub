@@ -7,8 +7,16 @@ public class Player {
         this.playerTiles = new TileCollection();
     }
 
+    public Player() {
+        this.playerTiles = new TileCollection();
+    }
+
     public String getName() {
         return this.playerName;
+    }
+
+    public void setName(String name) {
+        this.playerName = name;
     }
 
     public TileCollection getTileCollection() {

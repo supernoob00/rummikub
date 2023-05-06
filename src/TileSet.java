@@ -102,6 +102,10 @@ public class TileSet {
         return this.tiles.size();
     }
 
+    public boolean isEmpty() {
+        return this.tiles.size() == 0;
+    }
+
     public List<Color> getColors() {
         List<Color> colors = new ArrayList<Color>();
         for (Tile tile : this.tiles) {

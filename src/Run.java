@@ -1,6 +1,8 @@
 import java.util.List;
 
-public class Run {
+public final class Run {
+    private Run() {}
+
     public static boolean isRun(TileSet tiles) {
         boolean isSet = hasRequiredQuantity(tiles) && hasSameColors(tiles) && hasSequentialValues(tiles) && noMisplacedJokersInRun(tiles);
         return isSet;

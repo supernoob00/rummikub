@@ -1,4 +1,5 @@
-public class TileSetRules {
+public final class TileSetRules {
+    private TileSetRules() {}
     /* 
     A valid tile set is either:
     Group: Same value with unique colors. Has a max size of four, which is the number of colors.

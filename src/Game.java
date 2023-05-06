@@ -4,10 +4,10 @@ public class Game {
     public static int START_DEAL_COUNT = 14;
 
     private TileSet tileBag;
-    private List<Player> players;
+    private PlayerList players;
     private TileCollection gameBoard;
 
-    public Game(List<Player> p) {
+    public Game(int playerCount) {
         // create starting bag of tiles 
         this.tileBag = new TileSet();
         for (Tile tile : Tile.values()) {
@@ -16,17 +16,18 @@ public class Game {
         }
         this.tileBag.shuffle();
 
-        this.players = p;
-
         // initialize game board
         this.gameBoard = new TileCollection();
+
+        //initialize players
+        this.players = new PlayerList(playerCount);
     }
 
     public TileSet getTileBag() {
         return this.tileBag;
     }
 
-    public List<Player> getPlayers() {
+    public PlayerList getPlayerList() {
         return this.players;
     }
 
@@ -38,11 +39,11 @@ public class Game {
         System.out.println(getTileBag());
         dealStartingTiles();
         System.out.println(getTileBag());
-
     }
 
     private void dealStartingTiles() {
-        for (Player player : getPlayers()) {
+        List<Player> players = getPlayerList().getPlayers();
+        for (Player player : players) {
             TileSet tilesToDeal = getTileBag().removeNumOfTiles(START_DEAL_COUNT);
             player.getTileCollection().addTileSet(tilesToDeal);
         }

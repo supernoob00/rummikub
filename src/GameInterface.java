@@ -7,6 +7,11 @@ public class GameInterface {
         s = new Scanner(System.in);
     }
 
+    public void showPlayerTiles(Player p) {
+        System.out.println("Your tiles: ");
+        System.out.println(p.toString());
+    }
+
     public int getNumberOfPlayers() {
         int numOfPlayers = getUserInt("Enter number of players: ");
         return numOfPlayers;
