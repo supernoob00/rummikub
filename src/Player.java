@@ -4,11 +4,10 @@ public class Player {
 
     public Player(String name) {
         this.playerName = name;
-        this.playerTiles = new TileCollection();
     }
 
     public Player() {
-        this.playerTiles = new TileCollection();
+
     }
 
     public String getName() {
@@ -19,7 +18,7 @@ public class Player {
         this.playerName = name;
     }
 
-    public TileCollection getTileCollection() {
-        return this.playerTiles;
+    public void setPlayerTiles(TileCollection tiles) {
+        this.playerTiles = tiles;
     }
 }

@@ -7,9 +7,14 @@ public class GameInterface {
         s = new Scanner(System.in);
     }
 
-    public void showPlayerTiles(Player p) {
+    public void showPlayerTiles(Player player) {
         System.out.println("Your tiles: ");
-        System.out.println(p.toString());
+        System.out.println(player.getTileCollection().toString());
+    }
+
+    public void showBoardTiles(GameBoard board) {
+        System.out.println("Board tiles: ");
+        System.out.println(board.toString());
     }
 
     public int getNumberOfPlayers() {
