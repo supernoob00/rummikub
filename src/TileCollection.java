@@ -16,6 +16,10 @@ public class TileCollection {
         return tileSets.get(i);
     }
 
+    public int getTileSetCount() {
+        return getTileSets().size();
+    }
+
     public void addTileSet(TileSet tiles) {
         tileSets.add(tiles);
     }
@@ -25,8 +29,23 @@ public class TileCollection {
         return removedSet;
     }
 
+    public void addTile(Tile tile) {
+        TileSet ts = new TileSet();
+        ts.addTile(tile);
+        addTileSet(ts);
+    }
+
     public void splitTileArray(int tileArrayIndex, int splitIndex) {
         
+    }
+
+    public boolean isValid() {
+        for (TileSet ts : getTileSets()) {
+            if (!TileSetRules.isValid(ts)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean isEmpty() {

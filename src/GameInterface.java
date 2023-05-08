@@ -3,8 +3,7 @@ import java.util.Scanner;
 public class GameInterface {
     private Scanner s;
 
-    public GameInterface(Game g) {
-        this.game = g;
+    public GameInterface() {
         this.s = new Scanner(System.in);
     }
 
@@ -26,6 +25,29 @@ public class GameInterface {
     public String getPlayerName() {
         String name = getUserString("Enter your name: ");
         return name;
+    }
+
+    public PlayerCommand getPlayerCommand() {
+        String userString = getUserString("Enter a command: ");
+        PlayerCommand userCommand = PlayerCommand.getCommand(userString);
+        return userCommand;
+    }
+
+
+    public int getTileSet(TileCollection tc) {
+        // index counting starts at 1, not 0 for user interface
+        int lastIndex  = tc.getTileSetCount();
+        String msg = "Choose a tile set from 1 to " + Integer.toString(lastIndex) + ".";
+        int playerChoice = getUserInt(msg);
+        boolean playerChoiceInvalid = playerChoice < 1 || playerChoice > lastIndex;
+
+        while (playerChoiceInvalid) {
+            System.out.println("Not a valid choice, try again.");
+            playerChoice = getUserInt(msg);
+            playerChoiceInvalid = playerChoice < 1 || playerChoice > lastIndex;
+        }
+
+        return playerChoice;
     }
 
     private String getUserString(String msg) {

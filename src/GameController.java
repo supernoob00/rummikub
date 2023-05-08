@@ -12,6 +12,10 @@ public class GameController {
         return this.activePlayer;
     }
 
+    public GameInterface getInterface() {
+        return this.gi;
+    }
+
     private void setActivePlayer(Player player) {
         this.activePlayer = player;
     }
@@ -42,13 +46,29 @@ public class GameController {
             setActivePlayer(firstPlayer);
         }
         else {
-            Player nextPlayer = game.getPlayers().getPlayer(currentIndex + 1);
+            Player nextPlayer = game.getPlayers().get(currentIndex + 1);
             setActivePlayer(nextPlayer);
         }
     }
 
     private void playTurn(Player activePlayer) {
-        this.gi.showBoardTiles(game.getGameBoard());
-        this.gi.showPlayerTiles(activePlayer);
+        getInterface().showBoardTiles(game.getGameBoard());
+        getInterface().showPlayerTiles(activePlayer);
+    }
+
+    public void makeMove(Player activePlayer) {
+        PlayerCommand playerCommand = gi.getPlayerCommand();
+        if (playerCommand == playerCommand.PASS) {
+            game.drawTile(activePlayer);
+        }
+        else if (playerCommand == playerCommand.BOARD) {
+            int 
+        }
+        else if (playerCommand == playerCommand.RACK) {
+
+        }
+
+
+        }
     }
 }

@@ -8,6 +8,15 @@ public enum Command {
     MOVE("move", "m"),
     SPLIT("split", "sp");
 
+    public static Command getCommand(String userInput) {
+        for (Command c : Command.values()) {
+            if (c.getFull() == userInput || c.getShort() == userInput) {
+                return c;
+            }
+        }
+        return null;
+    }
+
     private String full;
     private String letter;
 
@@ -22,9 +31,5 @@ public enum Command {
 
     public String getShort() {
         return this.letter;
-    }
-
-    public boolean equals(String userInput) {
-        
     }
 }

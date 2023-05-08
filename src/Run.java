@@ -9,7 +9,7 @@ public final class Run {
     }
 
     public static boolean hasRequiredQuantity(TileSet tiles) {
-        boolean isRequiredLength = tiles.getQuantity() >= 3;
+        boolean isRequiredLength = tiles.getTileCount() >= 3;
         return isRequiredLength;
     }
 
@@ -20,7 +20,7 @@ public final class Run {
         int currentTileNum = tiles.getTile(firstIndex).getValue().getNum();
         int nextTileNum;
         boolean diffIsOne;
-        for (int i = firstIndex; i < tiles.getQuantity() - 1; i++) {
+        for (int i = firstIndex; i < tiles.getTileCount() - 1; i++) {
             if (tiles.getTile(i+1) == Tile.JOKER) {
                 nextTileNum = currentTileNum + 1;
             }
@@ -42,7 +42,7 @@ public final class Run {
         int startIndex = tiles.getNonJokerIndex();
         List<Color> colors = tiles.getColors();
         Color firstTileColor = colors.get(startIndex);
-        for (int i = startIndex; i < tiles.getQuantity(); i++) {
+        for (int i = startIndex; i < tiles.getTileCount(); i++) {
             if (colors.get(i) != firstTileColor && colors.get(i) != Color.JOKER) {
                 return false;
             }
@@ -54,8 +54,8 @@ public final class Run {
     public static boolean noMisplacedJokersInRun(TileSet tiles) {
         boolean jokerAtIndexZero = (tiles.getTile(0) == Tile.JOKER);
         boolean oneAtIndexOne = (tiles.getTile(1).getValue() == Value.ONE);
-        boolean jokerAtEnd = (tiles.getTile(tiles.getQuantity() - 1) == Tile.JOKER);
-        boolean thirteenAtOneBeforeLastIndex = (tiles.getValues().get(tiles.getQuantity() - 2) == Value.THIRTEEN);
+        boolean jokerAtEnd = (tiles.getTile(tiles.getTileCount() - 1) == Tile.JOKER);
+        boolean thirteenAtOneBeforeLastIndex = (tiles.getValues().get(tiles.getTileCount() - 2) == Value.THIRTEEN);
         return !(jokerAtIndexZero && oneAtIndexOne) && !(jokerAtEnd && thirteenAtOneBeforeLastIndex);
     }
 }

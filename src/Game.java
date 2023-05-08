@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    public static int START_DEAL_COUNT = 14;
+    public static final int START_DEAL_COUNT = 14;
+    public static final int MIN_PLAYER_COUNT = 2;
+    public static final int MAX_PLAYER_COUNT = 4;
 
     private TileSet tileBag;
     private TileCollection gameBoard;
@@ -35,6 +37,11 @@ public class Game {
     public TileCollection getGameBoard() {
         return this.gameBoard;
     }
+
+    public void drawTile(Player player) {
+        Tile drawnTile = tileBag.removeTile();
+        player.getTiles().addTile(drawnTile);
+    }
     
     public void run() {
         System.out.println(getTileBag());
@@ -54,10 +61,10 @@ public class Game {
     private void dealStartingTiles() {
         List<Player> players = getPlayers();
         for (Player player : players) {
-            TileSet tilesToDeal = getTileBag().removeNumOfTiles(START_DEAL_COUNT);
+            TileSet tilesToDeal = getTileBag().removeTiles(START_DEAL_COUNT);
             player.getTiles().addTileSet(tilesToDeal);
         }
     }
 
-    
+       
 }

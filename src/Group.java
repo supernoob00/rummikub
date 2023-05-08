@@ -13,7 +13,7 @@ public final class Group {
 
     // All valid tile sets must have at least three tiles
     public static boolean hasRequiredQuantity(TileSet tiles) {
-        boolean isRequiredLength = tiles.getQuantity() >= 3;
+        boolean isRequiredLength = tiles.getTileCount() >= 3;
         return isRequiredLength;
     }
     
@@ -35,7 +35,7 @@ public final class Group {
     // A group must have unique colors
     public static boolean hasUniqueColors(TileSet tiles) {
         // Only four colors exists (a joker cannot become a new color)
-        if (tiles.getQuantity() > Color.values().length) {
+        if (tiles.getTileCount() > Color.values().length) {
             return false;
         }
         List<Color> colors = tiles.getColors();
@@ -55,6 +55,6 @@ public final class Group {
     // A group cannot be greater than the number of unique colors (4)
     public static boolean lessThanFour(TileSet tiles) {
         int colorCount = Color.getColorCount();
-        return tiles.getQuantity() <= colorCount;
+        return tiles.getTileCount() <= colorCount;
     }
 }

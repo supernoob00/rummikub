@@ -30,7 +30,7 @@ public class TileSet {
     // Returns index of first number (non-joker) tile. If all tiles are joker returns joker.
     public int getNonJokerIndex() {
         int i = 0;
-        while (getTile(i) == Tile.JOKER && i < getQuantity()) {
+        while (getTile(i) == Tile.JOKER && i < getTileCount()) {
             i++;
         }
         return i;
@@ -60,13 +60,19 @@ public class TileSet {
     }
 
     public void insertTiles(TileSet tiles, int index) {
-        for (int i = 0; i < tiles.getQuantity(); i++) {
+        for (int i = 0; i < tiles getTileCount(); i++) {
             insertTile(tiles.getTile(i), index + i);
         }
     }
 
     public Tile removeTile(int i) {
         Tile removedTile = this.tiles.remove(i);
+        return removedTile;
+    }
+
+    public Tile removeTile() {
+        int lastIndex = getTileCount() - 1;
+        Tile removedTile = removeTile(lastIndex);
         return removedTile;
     }
     
@@ -80,12 +86,12 @@ public class TileSet {
     }
 
     public TileSet removeTiles(int startIndex) {
-        TileSet removedTiles = removeTiles(startIndex, getQuantity());
+        TileSet removedTiles = removeTiles(startIndex, getTileCount());
         return removedTiles;
     }
 
     public TileSet removeNumOfTiles(int count) {
-        TileSet removedTiles = removeTiles(getQuantity() - count);
+        TileSet removedTiles = removeTiles(getTileCount() - count);
         return removedTiles;
     }
 
@@ -98,7 +104,7 @@ public class TileSet {
         Collections.shuffle(tiles);
     }
 
-    public int getQuantity() {
+    public int getTileCount() {
         return this.tiles.size();
     }
 
@@ -133,7 +139,7 @@ public class TileSet {
     }
 
     public boolean equals(TileSet anotherTileSet) {
-        for (int i = 0; i < getQuantity(); i++) {
+        for (int i = 0; i < getTileCount(); i++) {
             if (getTile(i) != anotherTileSet.getTile(i)) {
                 return false;
             }
