@@ -18,15 +18,15 @@ public class GameController {
 
     public GameController(Game game) {
         this.game = new Game(4);
-        this.activePlayer = game.getPlayers().getPlayer(0);
+        this.activePlayer = game.getPlayers().get(0);
         this.gi = new GameInterface();
     }
     
     public void playGame() {
-        int playerCount = gi.getNumberOfPlayers();
+        int playerCount = gi.getPlayerCount();
 
         boolean tileBagNotEmpty = !game.getTileBag().isEmpty();
-        boolean noEmptyRacks = !game.getPlayers().hasPlayerWithNoTiles();
+        boolean noEmptyRacks = !game.anyEmptyRack();
         // main game loop
         while (tileBagNotEmpty && noEmptyRacks) {
 
@@ -36,9 +36,9 @@ public class GameController {
     private void switchActivePlayer() {
         int currentIndex = game.getPlayers().indexOf(activePlayer);
         int playerCount = game.getPlayers().size();
-        Player firstPlayer = game.getPlayers().get(0);
         Player lastPlayer = game.getPlayers().get(playerCount - 1);
         if (getActivePlayer() == lastPlayer) {
+            Player firstPlayer = game.getPlayers().get(0);
             setActivePlayer(firstPlayer);
         }
         else {

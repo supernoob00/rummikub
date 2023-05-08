@@ -3,21 +3,22 @@ import java.util.Scanner;
 public class GameInterface {
     private Scanner s;
 
-    public GameInterface() {
-        s = new Scanner(System.in);
+    public GameInterface(Game g) {
+        this.game = g;
+        this.s = new Scanner(System.in);
     }
 
     public void showPlayerTiles(Player player) {
         System.out.println("Your tiles: ");
-        System.out.println(player.getTileCollection().toString());
+        System.out.println(player.getTiles().toString());
     }
 
-    public void showBoardTiles(GameBoard board) {
+    public void showBoardTiles(TileCollection board) {
         System.out.println("Board tiles: ");
         System.out.println(board.toString());
     }
 
-    public int getNumberOfPlayers() {
+    public int getPlayerCount() {
         int numOfPlayers = getUserInt("Enter number of players: ");
         return numOfPlayers;
     }

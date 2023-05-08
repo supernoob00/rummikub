@@ -4,14 +4,15 @@ public class Player {
 
     public Player(String name) {
         this.playerName = name;
-    }
-
-    public Player() {
-
+        this.playerTiles = new TileCollection();
     }
 
     public String getName() {
         return this.playerName;
+    }
+
+    public TileCollection getPlayerTiles() {
+        return this.playerTiles;
     }
 
     public void setName(String name) {

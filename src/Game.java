@@ -6,7 +6,6 @@ public class Game {
 
     private TileSet tileBag;
     private TileCollection gameBoard;
-    private List<TileCollection> tileRacks;
     private List<Player> players;
 
     public Game(int playerCount) {
@@ -20,9 +19,6 @@ public class Game {
 
         // initialize game board
         this.gameBoard = new TileCollection();
-
-        // initialize tile racks
-
 
         //initialize players
         this.players = new ArrayList<Player>(playerCount);
@@ -39,16 +35,6 @@ public class Game {
     public TileCollection getGameBoard() {
         return this.gameBoard;
     }
-
-    public List<TileCollection> getTileRacks() {
-        return this.tileRacks;
-    }
-
-    public getTileRack(int i) {
-        return getTileRacks().get(i);
-    }
-
-    public boolean
     
     public void run() {
         System.out.println(getTileBag());
@@ -56,10 +42,20 @@ public class Game {
         System.out.println(getTileBag());
     }
 
+    public boolean anyEmptyRack() {
+        for (Player player : getPlayers()) {
+            if (player.getTiles().isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void dealStartingTiles() {
-        for (TileCollection t) {
+        List<Player> players = getPlayers();
+        for (Player player : players) {
             TileSet tilesToDeal = getTileBag().removeNumOfTiles(START_DEAL_COUNT);
-            player.getTileCollection().addTileSet(tilesToDeal);
+            player.getTiles().addTileSet(tilesToDeal);
         }
     }
 
