@@ -1,16 +1,16 @@
-public enum Command {
-    QUIT("quit", "quit"),
-    START("start", "start"),
-    PASS("pass", "p"),
-    BOARD("board", "b"),
-    RACK("rack", "r"),
-    SET("set", "s"),
-    MOVE("move", "m"),
-    SPLIT("split", "sp");
+public enum PlayerCommand {
+    QUIT("quit"),
+    START("start"),
+    PASS("pass"),
+    BOARD("board"),
+    RACK("rack"),
+    SET("set"),
+    MOVE("move"),
+    SPLIT("split");
 
-    public static Command getCommand(String userInput) {
-        for (Command c : Command.values()) {
-            if (c.getFull() == userInput || c.getShort() == userInput) {
+    public static PlayerCommand getCommand(String userInput) {
+        for (PlayerCommand c : PlayerCommand.values()) {
+            if (c.getText() == userInput) {
                 return c;
             }
         }
@@ -18,18 +18,12 @@ public enum Command {
     }
 
     private String full;
-    private String letter;
 
-    private Command(String full, String letter) {
+    private PlayerCommand(String full) {
         this.full = full;
-        this.letter = letter;
     }
     
-    public String getFull() {
+    public String getText() {
         return this.full;
-    }
-
-    public String getShort() {
-        return this.letter;
     }
 }

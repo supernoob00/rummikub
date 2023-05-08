@@ -11,7 +11,7 @@ public class Player {
         return this.playerName;
     }
 
-    public TileCollection getPlayerTiles() {
+    public TileCollection getTiles() {
         return this.playerTiles;
     }
 

@@ -24,6 +24,13 @@ public class Game {
 
         //initialize players
         this.players = new ArrayList<Player>(playerCount);
+
+        // add players
+        for (int i = 0; i < playerCount; i++) {
+            String playerName = "Player " + Integer.toString(i+1);
+            Player player = new Player(playerName);
+            this.players.add(player);
+        }
     }
 
     public TileSet getTileBag() {
@@ -39,14 +46,8 @@ public class Game {
     }
 
     public void drawTile(Player player) {
-        Tile drawnTile = tileBag.removeTile();
+        Tile drawnTile = tileBag.removeLastTile();
         player.getTiles().addTile(drawnTile);
-    }
-    
-    public void run() {
-        System.out.println(getTileBag());
-        dealStartingTiles();
-        System.out.println(getTileBag());
     }
 
     public boolean anyEmptyRack() {
@@ -58,7 +59,7 @@ public class Game {
         return false;
     }
 
-    private void dealStartingTiles() {
+    public void dealStartingTiles() {
         List<Player> players = getPlayers();
         for (Player player : players) {
             TileSet tilesToDeal = getTileBag().removeTiles(START_DEAL_COUNT);

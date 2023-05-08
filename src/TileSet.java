@@ -60,7 +60,7 @@ public class TileSet {
     }
 
     public void insertTiles(TileSet tiles, int index) {
-        for (int i = 0; i < tiles getTileCount(); i++) {
+        for (int i = 0; i < tiles.getTileCount(); i++) {
             insertTile(tiles.getTile(i), index + i);
         }
     }
@@ -70,7 +70,7 @@ public class TileSet {
         return removedTile;
     }
 
-    public Tile removeTile() {
+    public Tile removeLastTile() {
         int lastIndex = getTileCount() - 1;
         Tile removedTile = removeTile(lastIndex);
         return removedTile;
@@ -85,13 +85,12 @@ public class TileSet {
         return removedTiles;
     }
 
-    public TileSet removeTiles(int startIndex) {
-        TileSet removedTiles = removeTiles(startIndex, getTileCount());
-        return removedTiles;
-    }
-
-    public TileSet removeNumOfTiles(int count) {
-        TileSet removedTiles = removeTiles(getTileCount() - count);
+    public TileSet removeTiles(int count) {
+        TileSet removedTiles = new TileSet();
+        for (int i = 0; i < count; i++) {
+            Tile tile = removeLastTile();
+            removedTiles.addTile(tile);
+        }
         return removedTiles;
     }
 
@@ -133,7 +132,7 @@ public class TileSet {
     public String toString() {
         String tileSetString = "";
         for (Tile tile : getTiles()) {
-            tileSetString = tileSetString + " " + tile.toString();
+            tileSetString = tileSetString + tile.toString() + " " ;
         }
         return tileSetString;
     }
